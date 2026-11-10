@@ -80,9 +80,12 @@ nav.links, .breadcrumb { font: .875rem/1.5 var(--mono); }
 .catalog .topics { margin-top: .25rem; }
 .topic-results { margin-block: 0; padding-inline-start: 1rem; }
 .topic-results small, .metadata { color: var(--muted); font: .8125rem/1.5 var(--mono); }
-.note-entry, .related { border-top: 1px solid var(--rule); margin-top: 1.5rem; padding-top: .8rem; }
+.note-entry, .more-notes, .related { border-top: 1px solid var(--rule); margin-top: 1.5rem; padding-top: .8rem; }
 .note-entry h2, .note-entry p { margin: 0 0 .35rem; }
-.related { max-width: 43rem; }
+.more-notes, .related { max-width: 43rem; }
+.note-preview { margin-top: .65rem; }
+.note-preview h3 { margin: 0; font-size: 1rem; }
+.note-preview p { margin: .2rem 0 0; }
 .related h3 { margin: .55rem 0 .2rem; font-size: 1rem; }
 .related ul:not(.topics) { margin: 0; padding-inline-start: 1.2rem; }
 .related p { margin: .55rem 0 .2rem; }

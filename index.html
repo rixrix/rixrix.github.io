@@ -15,6 +15,18 @@ manual_page: Latest(7)
   <div class="prose">
     {{ latest.content }}
   </div>
+  {% if published.size > 1 %}
+  <section class="more-notes" aria-labelledby="more-notes">
+    <h2 class="label" id="more-notes">More notes</h2>
+    {% for post in published offset:1 limit:3 %}
+    <div class="note-preview">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+      <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+      <p>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncatewords: 28 | escape }}</p>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
   {% include see-also.html current_note=latest %}
 </article>
 {% else %}
