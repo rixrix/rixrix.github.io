@@ -1,0 +1,29 @@
+- name: AgenticFlowX
+  category: Developer tools
+  description: A VS Code extension and open workflow for building with AI coding agents.
+  url: https://github.com/AgenticFlowX/agenticflowx
+  tags: [ai-agents, vscode, markdown]
+
+- name: Oxidal
+  category: Audio and hardware
+  description: An open-source guitar and bass processor for Raspberry Pi 5.
+  url: https://github.com/oxidalhq/oxidal
+  tags: [rust, audio, raspberry-pi]
+
+- name: Desktop Nano Cortex
+  category: Audio and hardware
+  description: An unofficial cross-platform desktop companion for the Neural DSP Nano Cortex.
+  url: https://github.com/rixrix/deskop-nano-cortex
+  tags: [rust, audio, midi, tauri]
+
+- name: TrafLang
+  category: Languages and experiments
+  description: A driving-themed programming language that transpiles to JavaScript in a browser IDE.
+  url: https://github.com/rixrix/traflang
+  tags: [languages, javascript]
+
+- name: rust-nodejs-ffi
+  category: Languages and experiments
+  description: My first Rust experiment, exploring interoperability with Node.js in 2015.
+  url: https://github.com/rixrix/rust-nodejs-ffi
+  tags: [rust, javascript, ffi]

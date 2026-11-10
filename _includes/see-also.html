@@ -1,0 +1,56 @@
+{% assign current_note = include.current_note %}
+{% capture related_projects %}
+  {% for project in site.data.projects %}
+    {% assign project_id = project.name | slugify %}
+    {% assign matches = false %}
+    {% if current_note.projects contains project_id %}
+      {% assign matches = true %}
+    {% elsif current_note.projects == nil %}
+      {% for tag in current_note.tags %}
+        {% if project.tags contains tag %}
+          {% assign matches = true %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% if matches %}
+    <li>
+      <a href="{{ '/projects/' | relative_url }}#{{ project_id }}">{{ project.name | escape }}</a>
+      <a class="source-link" href="{{ project.url | escape }}" aria-label="{{ project.name | escape }} source on GitHub">[source]</a>
+    </li>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% capture related_notes %}
+  {% assign related_count = 0 %}
+  {% for note in site.posts %}
+    {% if note.url == current_note.url %}{% continue %}{% endif %}
+    {% for tag in current_note.tags %}
+      {% if note.tags contains tag %}
+        <li><a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a></li>
+        {% assign related_count = related_count | plus: 1 %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if related_count >= 3 %}{% break %}{% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% assign related_projects = related_projects | strip %}
+{% assign related_notes = related_notes | strip %}
+<aside class="related" aria-labelledby="see-also">
+  <h2 class="label" id="see-also">See also</h2>
+  {% if related_projects != '' %}
+    <h3>Related projects</h3>
+    <ul>{{ related_projects }}</ul>
+  {% endif %}
+  {% if related_notes != '' %}
+    <h3>Related notes</h3>
+    <ul>{{ related_notes }}</ul>
+  {% endif %}
+  <p><a href="{{ '/notes/' | relative_url }}">All notes</a></p>
+  {% if current_note.tags.size > 0 %}
+    {% include topics.html tags=current_note.tags %}
+  {% endif %}
+</aside>

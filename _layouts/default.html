@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+  <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  {% assign manual_page = page.manual_page | default: 'Richard Sentino(7)' %}
+  {% if page.layout == 'post' and page.manual_page == nil %}
+    {% assign manual_page = 'Note(7)' %}
+  {% endif %}
+  <header class="masthead">
+    <span>{{ manual_page | escape }}</span>
+    <span>Software Notes</span>
+    <span aria-hidden="true">{{ manual_page | escape }}</span>
+  </header>
+  <nav class="synopsis links" aria-label="Site navigation">
+    <span>[<a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>home</a>]</span>
+    <span>[<a href="{{ '/notes/' | relative_url }}"{% if page.url == '/notes/' %} aria-current="page"{% endif %}>notes</a>]</span>
+    <span>[<a href="{{ '/projects/' | relative_url }}"{% if page.url == '/projects/' %} aria-current="page"{% endif %}>projects</a>]</span>
+    <span>[<a href="{{ '/topics/' | relative_url }}"{% if page.url == '/topics/' %} aria-current="page"{% endif %}>topics</a>]</span>
+    <span>[<a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>about</a>]</span>
+  </nav>
+  <main id="main">
+    {{ content }}
+  </main>
+  <footer class="footer">
+    <span>{{ site.title | escape }} · Auckland</span>
+    <nav aria-label="Profile links">
+      <a href="https://github.com/rixrix">GitHub</a>
+      <span aria-hidden="true"> · </span>
+      <a href="https://www.linkedin.com/in/sentino/">LinkedIn</a>
+    </nav>
+  </footer>
+</body>
+</html>

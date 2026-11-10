@@ -1,0 +1,24 @@
+---
+layout: default
+title: Latest note
+manual_page: Latest(7)
+---
+{% assign published = site.posts | where_exp: 'post', 'post.draft != true' %}
+{% assign latest = published.first %}
+{% if latest %}
+<article>
+  <header class="note-header">
+    <p class="label">Latest note</p>
+    <h1><a href="{{ latest.url | relative_url }}">{{ latest.title | escape }}</a></h1>
+    <time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y-%m-%d' }}</time>
+  </header>
+  <div class="prose">
+    {{ latest.content }}
+  </div>
+  {% include see-also.html current_note=latest %}
+</article>
+{% else %}
+<h1>Software Notes</h1>
+<p>No notes published yet.</p>
+<p><a href="{{ '/notes/' | relative_url }}">Browse notes</a></p>
+{% endif %}

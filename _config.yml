@@ -1,0 +1,12 @@
+title: Richard Sentino
+description: Field notes on the day-to-day work of software development.
+url: https://rixrix.github.io
+timezone: Pacific/Auckland
+permalink: /notes/:year/:month/:day/:title/
+markdown: kramdown
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post

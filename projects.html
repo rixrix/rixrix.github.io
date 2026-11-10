@@ -1,0 +1,24 @@
+---
+layout: default
+title: Projects
+manual_page: Projects(7)
+permalink: /projects/
+---
+<h1>Projects</h1>
+<p>Selected open-source projects and experiments from my <a href="https://github.com/rixrix">GitHub profile</a>.</p>
+
+{% assign groups = site.data.projects | group_by: 'category' %}
+{% for group in groups %}
+<section class="manual-section" aria-labelledby="{{ group.name | slugify }}">
+  <h2 class="label" id="{{ group.name | slugify }}">{{ group.name | escape }}</h2>
+  <dl class="catalog">
+    {% for project in group.items %}
+    <dt id="{{ project.name | slugify }}"><a href="{{ project.url }}">{{ project.name | escape }}</a></dt>
+    <dd>
+      <p>{{ project.description | escape }}</p>
+      {% include topics.html tags=project.tags %}
+    </dd>
+    {% endfor %}
+  </dl>
+</section>
+{% endfor %}

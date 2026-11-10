@@ -1,0 +1,5 @@
+<ul class="links topics" aria-label="Topics">
+  {% for tag in include.tags %}
+  <li><a href="{{ '/topics/' | relative_url }}#topic-{{ tag | slugify }}">#{{ tag | escape }}</a></li>
+  {% endfor %}
+</ul>
