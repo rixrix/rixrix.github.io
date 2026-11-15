@@ -1,4 +1,4 @@
-# Richard Sentino · Software Notes
+# Welcome!
 
 [Read the blog at rixrix.github.io](https://rixrix.github.io/)
 
