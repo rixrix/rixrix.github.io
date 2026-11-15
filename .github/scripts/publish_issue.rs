@@ -37,11 +37,20 @@ fn main() -> Result<()> {
             continue;
         }
         if fs::read_to_string(&candidate)?.contains(&format!("source_issue: {issue_number}")) {
-            return Err(format!(
-                "Issue #{issue_number} has already been published as {}",
-                candidate.display()
-            )
-            .into());
+            let path = candidate.to_string_lossy().into_owned();
+            let filename = candidate
+                .file_stem()
+                .and_then(|stem| stem.to_str())
+                .ok_or("Published post has an invalid filename")?;
+            let date = filename
+                .get(..10)
+                .ok_or("Published post has an invalid date")?;
+            let slug = filename
+                .get(11..)
+                .ok_or("Published post has an invalid slug")?;
+            write_outputs(&path, &date.replace('-', "/"), slug, false)?;
+            println!("Issue #{issue_number} was already published as {path}");
+            return Ok(());
         }
     }
 
@@ -57,16 +66,22 @@ fn main() -> Result<()> {
     let mut file = File::create(&path)?;
     write!(file, "{front_matter}\n{body}\n")?;
 
+    write_outputs(&path, &date.replace('-', "/"), &slug, true)?;
+
+    println!("Created {path} from Issue #{issue_number}");
+    Ok(())
+}
+
+fn write_outputs(path: &str, date_path: &str, slug: &str, created: bool) -> Result<()> {
     if let Ok(output) = env::var("GITHUB_OUTPUT") {
         let mut output_file = fs::OpenOptions::new().append(true).open(output)?;
         writeln!(output_file, "post_path={path}")?;
         writeln!(
             output_file,
-            "post_url=https://rixrix.github.io/notes/{date}/{slug}/"
+            "post_url=https://rixrix.github.io/notes/{date_path}/{slug}/"
         )?;
+        writeln!(output_file, "created={created}")?;
     }
-
-    println!("Created {path} from Issue #{issue_number}");
     Ok(())
 }
 
