@@ -7,13 +7,27 @@ permalink: /notes/
 <h1>Notes</h1>
 <p>Daily observations, experiments, and findings from building software.</p>
 
+{% assign years = '' | split: '' %}
 {% for post in site.posts %}
+  {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+  {% assign year = year | strip %}
+  {% unless years contains year %}{% assign years = years | push: year %}{% endunless %}
+{% endfor %}
+{% assign years = years | sort | reverse %}
+{% for year in years %}
+<section class="notes-year" id="year-{{ year }}" aria-labelledby="year-heading-{{ year }}">
+  <h2 class="label" id="year-heading-{{ year }}">{{ year }}</h2>
+{% for post in site.posts %}
+{% assign post_year = post.date | date: '%Y' %}
+{% if post_year != year %}{% continue %}{% endif %}
 <article class="note-entry">
   <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
   <p class="metadata"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y-%m-%d' }}</time>{% if post.categories.size > 0 %} · {{ post.categories | join: ', ' | escape }}{% endif %}</p>
   <p>{{ post.description | default: post.excerpt | strip_html | escape }}</p>
   {% include topics.html tags=post.tags %}
 </article>
+{% endfor %}
+</section>
 {% else %}
 <p>No notes published yet.</p>
 {% endfor %}

@@ -14,7 +14,7 @@
 * { box-sizing: border-box; }
 
 body {
-  max-width: 53rem;
+  max-width: 76rem;
   margin: 0 auto;
   padding: 1.25rem clamp(1rem, 4vw, 2rem);
   background: var(--paper);
@@ -48,7 +48,29 @@ a:focus-visible { outline: 2px solid var(--link); outline-offset: 4px; }
 }
 .footer { border-top: 1px solid var(--rule); margin-top: 2rem; }
 
-main { margin-top: 1.45rem; }
+.site-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 15rem;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+  margin-top: 1.45rem;
+}
+
+main { min-width: 0; }
+
+.sidebar {
+  border-inline-start: 1px solid var(--rule);
+  padding-inline-start: 1rem;
+  font-size: .95rem;
+}
+.sidebar-section + .sidebar-section { border-top: 1px solid var(--rule); margin-top: 1.25rem; padding-top: .8rem; }
+.sidebar-list { list-style: none; margin: 0; padding: 0; }
+.sidebar-list li + li { margin-top: .35rem; }
+.sidebar-list small { color: var(--muted); font: .75rem/1.5 var(--mono); }
+.sidebar-topics { gap: .15rem .65rem; }
+.sidebar-more { margin: .6rem 0 0; font: .8125rem/1.5 var(--mono); }
+.notes-year + .notes-year { margin-top: 2rem; }
+.notes-year > .label { border-bottom: 1px solid var(--rule); padding-bottom: .35rem; }
 
 .manual-section + .manual-section { margin-top: 1.35rem; }
 .manual-section > :nth-child(2) { margin-inline-start: clamp(.75rem, 4vw, 2rem); }
@@ -111,6 +133,9 @@ main:target { background: transparent; }
 .prose code { font: .85em var(--mono); }
 
 @media (max-width: 38rem) {
+  .site-layout { display: block; }
+  .sidebar { border-inline-start: 0; border-top: 1px solid var(--rule); margin-top: 2rem; padding: 1rem 0 0; }
+  .sidebar-section + .sidebar-section { margin-top: 1rem; }
   .masthead span[aria-hidden] { display: none; }
 }
 

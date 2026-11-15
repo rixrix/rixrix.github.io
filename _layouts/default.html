@@ -25,9 +25,12 @@
     <span>[<a href="{{ '/topics/' | relative_url }}"{% if page.url == '/topics/' %} aria-current="page"{% endif %}>topics</a>]</span>
     <span>[<a href="{{ '/about/' | relative_url }}"{% if page.url == '/about/' %} aria-current="page"{% endif %}>about</a>]</span>
   </nav>
-  <main id="main">
-    {{ content }}
-  </main>
+  <div class="site-layout">
+    <main id="main">
+      {{ content }}
+    </main>
+    {% include sidebar.html %}
+  </div>
   <footer class="footer">
     <span>{{ site.title | escape }} · Auckland</span>
     <nav aria-label="Profile links">
