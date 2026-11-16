@@ -27,6 +27,7 @@ This is where I keep things I’ve tried and findings worth remembering. A stran
 
 - **TypeScript** · Added Web Audio’s `AudioContext.state` to the DOM typings. [Merged pull request](https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/30)
 - **Sodium TypeScript** · Worked on npm packaging and continuous integration. [Merged pull request](https://github.com/SodiumFRP/sodium-typescript/pull/27)
+- **Firefox OS** · Submitted patches to Apache Cordova’s port for Mozilla’s Firefox OS, covering `deviceready` event handling and an error-message typo. [Event handling PR](https://github.com/apache/cordova-firefoxos/pull/1) · [Error message PR](https://github.com/apache/cordova-firefoxos/pull/5)
 - **npm and Angular** · Filed a CLI documentation issue for npm and joined Angular discussions about routing and typings. [npm issue](https://github.com/npm/npm/issues/12223) · [Angular activity](https://github.com/search?q=is%3Apublic+involves%3Arixrix+org%3Aangular&type=issues)
 
 ## See also

@@ -5,7 +5,7 @@
   {%- assign display_clock = true -%}
 {%- endif -%}
 {%- if display_clock -%}
-<time datetime="{{ include.post.date | date_to_xmlschema }}">{{ day }} · {{ include.post.date | date: '%H:%M' }} UTC{{ include.post.date | date: '%:z' }}</time>
+<time datetime="{{ include.post.date | date_to_xmlschema }}">{{ day }} · {{ include.post.date | date: '%l:%M %p' | strip }}</time>
 {%- else -%}
 <time datetime="{{ day }}">{{ day }}</time>
 {%- endif -%}
