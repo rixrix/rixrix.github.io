@@ -1,6 +1,7 @@
 ---
 title: 'build iPhone compatible Drupal websites'
 date: 2009-10-01 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, drupal, iphone]
 description: 'A short link about building iPhone-compatible Drupal websites.'

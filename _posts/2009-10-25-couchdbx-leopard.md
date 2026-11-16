@@ -1,6 +1,7 @@
 ---
 title: 'CouchDBX for Leopard'
 date: 2009-10-25 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, couchdb, macos]
 description: 'Trying CouchDBX on Leopard.'

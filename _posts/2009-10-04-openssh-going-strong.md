@@ -1,6 +1,7 @@
 ---
 title: 'OpenSSH going strong after 10 years'
 date: 2009-10-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, openssh, unix]
 description: 'A link celebrating OpenSSH after ten years.'

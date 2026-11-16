@@ -1,6 +1,7 @@
 ---
 title: '10 Things We Can Learn From Your Health-Related Twitter Rants'
 date: 2011-07-18 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [twitter, health, data]
 description: 'A shared note about mining health-related tweets for public-health signals.'

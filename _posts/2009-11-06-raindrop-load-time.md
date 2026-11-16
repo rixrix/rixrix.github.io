@@ -1,6 +1,7 @@
 ---
 title: 'Raindrop load time'
 date: 2009-11-06 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, raindrop]
 description: 'A brief observation about Raindrop taking time to load.'

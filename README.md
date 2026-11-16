@@ -22,6 +22,8 @@ rust-script _blog.rs publish _posts/YYYY-MM-DD-my-next-post.md
 
 Run `rust-script _blog.rs --help` to see the commands again.
 
+Both publishing paths record the time and UTC offset in the `date` front matter. Use `show_time: true` to display a recorded midnight time, or `show_time: false` for an archive entry with a date-only placeholder.
+
 ## Publishing from a GitHub Issue
 
 Open an Issue using the **Blog post** template. On the first line, leave `Tags:` empty for automatic tags or enter a comma-separated list. Leave a blank line before the post body. The publisher uses up to three matches from the title and body when the field is empty. Existing issues that start with the post body are still supported.

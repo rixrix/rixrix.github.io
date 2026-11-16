@@ -1,6 +1,7 @@
 ---
 title: 'A simple, open standard for describing REST APIs with JSON'
 date: 2011-08-13 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [api, rest, json, swagger]
 description: 'A note introducing Swagger as a way to document REST APIs.'

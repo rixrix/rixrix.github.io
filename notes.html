@@ -22,7 +22,7 @@ permalink: /notes/
 {% if post_year != year %}{% continue %}{% endif %}
 <article class="note-entry">
   <h2><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h2>
-  <p class="metadata"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y-%m-%d' }}</time>{% if post.categories.size > 0 %} · {{ post.categories | join: ', ' | escape }}{% endif %}</p>
+  <p class="metadata">{% include post-date.html post=post %}{% if post.categories.size > 0 %} · {{ post.categories | join: ', ' | escape }}{% endif %}</p>
   <p>{{ post.description | default: post.excerpt | strip_html | escape }}</p>
   {% include topics.html tags=post.tags %}
 </article>

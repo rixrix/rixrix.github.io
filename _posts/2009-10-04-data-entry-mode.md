@@ -1,6 +1,7 @@
 ---
 title: 'data entry mode'
 date: 2009-10-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog]
 description: 'A tiny note from a data-entry session.'

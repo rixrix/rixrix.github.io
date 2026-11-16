@@ -1,6 +1,7 @@
 ---
 title: 'Chrome command-click tabs'
 date: 2009-11-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, chrome, browsers]
 description: 'A note about Chrome opening command-clicked links beside their parent tab.'

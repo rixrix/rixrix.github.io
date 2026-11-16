@@ -1,6 +1,7 @@
 ---
 title: 'Google Voice invite'
 date: 2009-10-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, google-voice]
 description: 'A short note about receiving a Google Voice invitation.'

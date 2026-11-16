@@ -1,6 +1,7 @@
 ---
 title: 'A Cebu invitation'
 date: 2009-11-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, cebu]
 description: 'A short message in Cebuano about joining an activity.'

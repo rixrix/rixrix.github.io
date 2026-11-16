@@ -1,0 +1,11 @@
+{%- assign clock = include.post.date | date: '%H:%M:%S' -%}
+{%- assign day = include.post.date | date: '%Y-%m-%d' -%}
+{%- assign display_clock = include.post.show_time -%}
+{%- if display_clock == nil and clock != '00:00:00' -%}
+  {%- assign display_clock = true -%}
+{%- endif -%}
+{%- if display_clock -%}
+<time datetime="{{ include.post.date | date_to_xmlschema }}">{{ day }} · {{ include.post.date | date: '%H:%M' }} UTC{{ include.post.date | date: '%:z' }}</time>
+{%- else -%}
+<time datetime="{{ day }}">{{ day }}</time>
+{%- endif -%}

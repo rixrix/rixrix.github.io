@@ -1,6 +1,7 @@
 ---
 title: 'Cloudata: A New Open Source BigTable Inspired Database'
 date: 2011-03-06 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [opensource, databases, bigtable]
 description: 'A note about Cloudata, an open-source implementation inspired by Google BigTable.'

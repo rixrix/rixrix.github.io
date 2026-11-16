@@ -1,6 +1,7 @@
 ---
 title: 'Tips for Great Client Relationships'
 date: 2011-07-13 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [clients, business, tips]
 description: 'A note about maintaining useful client relationships after a project ends.'

@@ -1,6 +1,7 @@
 ---
 title: 'BIND in VirtualBox'
 date: 2009-10-22 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, bind, virtualbox, ubuntu]
 description: 'Configuring a local BIND server in VirtualBox on Ubuntu TurkeyLinux.'

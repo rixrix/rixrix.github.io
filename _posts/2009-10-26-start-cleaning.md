@@ -1,6 +1,7 @@
 ---
 title: 'Should start cleaning'
 date: 2009-10-26 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog]
 description: 'A note about a crowded workspace.'

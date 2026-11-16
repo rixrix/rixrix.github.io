@@ -1,6 +1,7 @@
 ---
 title: 'Complex technology, simple interface'
 date: 2009-10-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, design]
 description: 'A note on complex technology presented through a simple interface.'

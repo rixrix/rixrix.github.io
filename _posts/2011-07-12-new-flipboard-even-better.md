@@ -1,6 +1,7 @@
 ---
 title: 'New Flipboard: Even Better!'
 date: 2011-07-12 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [mobile, flipboard]
 description: 'A short shared note about a new Flipboard release.'

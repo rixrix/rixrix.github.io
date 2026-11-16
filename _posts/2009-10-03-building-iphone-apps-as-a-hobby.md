@@ -1,6 +1,7 @@
 ---
 title: 'Building iPhone apps as a hobby'
 date: 2009-10-03 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, iphone]
 description: 'A note about balancing a regular day job with building iPhone apps as a hobby.'

@@ -17,7 +17,7 @@ phosphor_icons: true
   <header class="note-header">
     <p class="label">Latest note</p>
     <h2 class="home-note-title"><a href="{{ latest.url | relative_url }}">{{ latest.title | escape }}</a></h2>
-    <time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y-%m-%d' }}</time>
+    {% include post-date.html post=latest %}
   </header>
   {% assign summary = latest.description | default: latest.excerpt | strip_html | normalize_whitespace | truncatewords: 44 %}
   {% if summary != '' %}<p class="home-summary">{{ summary | escape }}</p>{% endif %}
@@ -29,7 +29,7 @@ phosphor_icons: true
     {% for post in published offset:1 limit:3 %}
     <div class="note-preview">
       <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
-      <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+      {% include post-date.html post=post %}
       <p>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncatewords: 28 | escape }}</p>
     </div>
     {% endfor %}

@@ -80,7 +80,7 @@ fn new_post(title: &str) -> Result<()> {
         })?;
     writeln!(
         file,
-        "---\ntitle: '{title}'\ndate: {date}\ncategory: Field notes\ntags: []\ndescription: ''\n---\n"
+        "---\ntitle: '{title}'\ndate: {date}\nshow_time: true\ncategory: Field notes\ntags: []\ndescription: ''\n---\n"
     )?;
     println!("Created {path}");
     Ok(())

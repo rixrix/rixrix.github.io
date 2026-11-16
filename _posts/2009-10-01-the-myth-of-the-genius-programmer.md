@@ -1,6 +1,7 @@
 ---
 title: 'The Myth of the Genius Programmer'
 date: 2009-10-01 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, programming]
 description: 'A short note linking to a reflection on the myth of the genius programmer.'

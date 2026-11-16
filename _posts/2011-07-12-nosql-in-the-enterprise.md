@@ -1,6 +1,7 @@
 ---
 title: 'NoSQL is Catching On in the Enterprise'
 date: 2011-07-12 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [nosql, databases, enterprise]
 description: 'A short note about enterprise adoption of schema-less databases.'

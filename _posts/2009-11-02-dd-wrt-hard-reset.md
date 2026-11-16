@@ -1,6 +1,7 @@
 ---
 title: 'DD-WRT hard reset'
 date: 2009-11-02 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, dd-wrt, networking]
 description: 'A short note about a hard reset and DD-WRT.'

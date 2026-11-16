@@ -1,6 +1,7 @@
 ---
 title: 'Better Habits for Better Developed Applications'
 date: 2011-07-08 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [development, design]
 description: 'Notes on leaving ego aside and building applications around their purpose.'

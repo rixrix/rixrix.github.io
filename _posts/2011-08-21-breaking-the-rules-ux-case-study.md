@@ -1,6 +1,7 @@
 ---
 title: 'Breaking The Rules: A UX Case Study'
 date: 2011-08-21 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [ux, design]
 description: 'A short shared note about improving a process by breaking rigid design rules thoughtfully.'

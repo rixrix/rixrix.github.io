@@ -1,6 +1,7 @@
 ---
 title: 'Debugging Search Application Relevance Issues'
 date: 2011-04-26 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [search, debugging]
 description: 'A practical reference on diagnosing search relevance problems.'

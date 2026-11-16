@@ -1,6 +1,7 @@
 ---
 title: 'Guy Kawasaki on Gaining Customer Trust'
 date: 2011-07-19 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [customers, trust]
 description: 'A short shared link about gaining customer trust.'

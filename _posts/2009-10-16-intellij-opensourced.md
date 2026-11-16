@@ -1,6 +1,7 @@
 ---
 title: 'IntelliJ gets open-sourced'
 date: 2009-10-16 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, java, opensource]
 description: 'A note about IntelliJ becoming a serious Eclipse competitor.'

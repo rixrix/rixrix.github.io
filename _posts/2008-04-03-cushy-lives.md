@@ -1,6 +1,7 @@
 ---
 title: 'cushy lives'
 date: 2008-04-03 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [antlr, bison, lex, yacc]
 description: 'An early progress note about a project involving virtual machines, compilers, parsers, and lexical analyzers.'

@@ -59,8 +59,11 @@ fn main() -> Result<()> {
         return Err("Issue title must contain at least one ASCII letter or number".into());
     }
 
-    let date = command_output("date", &["+%Y-%m-%d"])?;
     let timestamp = command_output("date", &["+%Y-%m-%d %H:%M:%S %z"])?;
+    let date = timestamp
+        .split_whitespace()
+        .next()
+        .ok_or("Missing publication date")?;
     let path = format!("_posts/{date}-{slug}.md");
 
     for entry in fs::read_dir("_posts")? {
@@ -106,7 +109,7 @@ fn main() -> Result<()> {
         .collect::<Vec<_>>()
         .join(", ");
     let front_matter = format!(
-        "---\ntitle: '{yaml_title}'\ndate: {timestamp}\ncategory: Field notes\ntags: [{tags}]\ndescription: ''\nsource_issue: {issue_number}\n---\n"
+        "---\ntitle: '{yaml_title}'\ndate: {timestamp}\nshow_time: true\ncategory: Field notes\ntags: [{tags}]\ndescription: ''\nsource_issue: {issue_number}\n---\n"
     );
 
     let mut file = File::create(&path)?;

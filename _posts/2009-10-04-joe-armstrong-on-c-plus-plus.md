@@ -1,6 +1,7 @@
 ---
 title: 'Joe Armstrong on C++'
 date: 2009-10-04 00:00:00 +12:00
+show_time: false
 category: Field notes
 tags: [microblog, programming]
 description: 'A note quoting Joe Armstrong on the difficulty of reading and writing C++.'
