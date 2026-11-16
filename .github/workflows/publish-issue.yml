@@ -1,37 +1,69 @@
-name: Publish blog Issue
+name: Build and deploy blog
 
 on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
   issues:
     types: [labeled]
 
 permissions:
-  contents: write
-  issues: write
-  pages: write
-  id-token: write
+  contents: read
 
 concurrency:
-  group: publish-blog
-  cancel-in-progress: false
+  group: ${{ github.event_name == 'pull_request' && format('blog-pr-{0}', github.event.pull_request.number) || 'blog-production' }}
+  queue: max
 
 jobs:
-  publish:
-    if: >-
-      github.event.label.name == 'publish' &&
-      github.event.issue.user.login == github.repository_owner &&
-      github.actor == github.repository_owner
+  check:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install rust-script
+        run: cargo install rust-script --locked --version 0.36.0
+      - name: Test Issue publisher
+        run: |
+          rustc --test .github/scripts/publish_issue.rs -o /tmp/publish_issue_tests
+          /tmp/publish_issue_tests
+      - name: Build and check site
+        env:
+          JEKYLL_ENV: production
+        run: |
+          bundle exec jekyll build
+          rust-script scripts/check_site.rs _site
+
+  deploy:
+    if: >-
+      github.ref == 'refs/heads/main' &&
+      github.event_name != 'pull_request' &&
+      (github.event_name != 'issues' ||
+        (github.event.label.name == 'publish' &&
+         github.event.issue.user.login == github.repository_owner &&
+         github.actor == github.repository_owner))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     env:
       TZ: Pacific/Auckland
-      ISSUE_TITLE: ${{ github.event.issue.title }}
-      ISSUE_BODY: ${{ github.event.issue.body }}
-      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      JEKYLL_ENV: production
 
     steps:
-      - name: Check out main
+      - name: Check out latest main
         uses: actions/checkout@v4
         with:
           ref: main
@@ -40,40 +72,51 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install rust-script
-        run: cargo install rust-script --locked
-
-      - name: Verify Rust tooling
-        run: |
-          rustc --version
-          cargo --version
-          rust-script --version
+        run: cargo install rust-script --locked --version 0.36.0
 
       - name: Generate Jekyll post
+        if: github.event_name == 'issues'
         id: post
+        env:
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           rustc .github/scripts/publish_issue.rs -o /tmp/publish_issue
           /tmp/publish_issue
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build and check site
+        env:
+          POST_PATH: ${{ steps.post.outputs.post_route }}
+        run: |
+          bundle exec jekyll build
+          rust-script scripts/check_site.rs _site
+          if [ -n "$POST_PATH" ]; then
+            test -f "_site/${POST_PATH}index.html"
+          fi
+
       - name: Commit generated post
         if: steps.post.outputs.created == 'true'
+        env:
+          POST_FILE: ${{ steps.post.outputs.post_path }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add "${{ steps.post.outputs.post_path }}"
-          git commit -m "Publish blog post from Issue #${{ github.event.issue.number }}"
+          git add -- "$POST_FILE"
+          git commit -m "Publish blog post from Issue #$ISSUE_NUMBER"
           git push origin HEAD:main
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+      - name: Record built revision
+        run: git rev-parse HEAD > _site/build-revision.txt
 
-      - name: Build Jekyll site
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./
-          destination: ./_site
+      - uses: actions/configure-pages@v5
 
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
 
@@ -81,21 +124,26 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Verify live pages match the build
+        env:
+          SITE_URL: ${{ steps.deployment.outputs.page_url }}
+          POST_PATH: ${{ steps.post.outputs.post_route }}
+        run: bash scripts/check_deployment.sh _site "$SITE_URL" "$POST_PATH"
+
       - name: Mark Issue as published
+        if: github.event_name == 'issues'
         uses: actions/github-script@v7
         env:
           POST_URL: ${{ steps.post.outputs.post_url }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
         with:
           script: |
-            const issue = {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: Number(process.env.ISSUE_NUMBER)
-            };
+            const repo = context.repo;
+            const issue = {...repo, issue_number: Number(process.env.ISSUE_NUMBER)};
+            const body = `Published: ${process.env.POST_URL}`;
             try {
               await github.rest.issues.createLabel({
-                ...issue,
+                ...repo,
                 name: 'published',
                 color: '0e8a16',
                 description: 'This Issue has been published as a blog post'
@@ -103,11 +151,14 @@ jobs:
             } catch (error) {
               if (error.status !== 422) throw error;
             }
-            await github.rest.issues.createComment({
-              ...issue,
-              body: `Published: ${process.env.POST_URL}`
-            });
-            await github.rest.issues.addLabels({
-              ...issue,
-              labels: ['published']
-            });
+            const comments = await github.paginate(github.rest.issues.listComments, issue);
+            const existing = comments.find(comment =>
+              comment.user.login === 'github-actions[bot]' &&
+              comment.body.startsWith('Published: ')
+            );
+            if (!existing) {
+              await github.rest.issues.createComment({...issue, body});
+            } else if (existing.body !== body) {
+              await github.rest.issues.updateComment({...repo, comment_id: existing.id, body});
+            }
+            await github.rest.issues.addLabels({...issue, labels: ['published']});

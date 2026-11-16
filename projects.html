@@ -16,6 +16,9 @@ permalink: /projects/
     <dt id="{{ project.name | slugify }}"><a href="{{ project.url }}">{{ project.name | escape }}</a></dt>
     <dd>
       <p>{{ project.description | escape }}</p>
+      {% if project.demo_url %}
+      <p><a href="{{ project.demo_url | escape }}">Try {{ project.name | escape }} in your browser</a></p>
+      {% endif %}
       {% include topics.html tags=project.tags %}
     </dd>
     {% endfor %}

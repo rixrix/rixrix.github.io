@@ -15,7 +15,7 @@ const HELP: &str = "Usage:
   rust-script _blog.rs publish _posts/YYYY-MM-DD-slug.md
 
 new creates a dated Markdown file in _posts. Edit it before publishing.
-build renders the local site into _site.
+build renders the local site into _site and checks internal links.
 publish builds, commits the selected post, and pushes main to origin.
 GitHub Pages deploys the push to https://rixrix.github.io/.";
 
@@ -87,14 +87,12 @@ fn new_post(title: &str) -> Result<()> {
 }
 
 fn build() -> Result<()> {
-    let mut jekyll = if Path::new(".jekyll-gems/bin/jekyll").is_file() {
-        let mut command = Command::new(".jekyll-gems/bin/jekyll");
-        command.env("GEM_HOME", ".jekyll-gems");
-        command
-    } else {
-        Command::new("jekyll")
-    };
-    checked(jekyll.arg("build"))
+    checked(
+        Command::new("bundle")
+            .env("JEKYLL_ENV", "production")
+            .args(["exec", "jekyll", "build"]),
+    )?;
+    checked(Command::new("rust-script").args(["scripts/check_site.rs", "_site"]))
 }
 
 fn publish(path: &str) -> Result<()> {

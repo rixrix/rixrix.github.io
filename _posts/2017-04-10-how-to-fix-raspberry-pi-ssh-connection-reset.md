@@ -56,7 +56,7 @@ Creating SSH2 ED25519 key; this may take some time ...
 ## My Raspberry Pi
 
 * OS: Raspbian GNU/Linux 8.0 (jessie)
-* Image burner [Etcher](+https://etcher.io/) tool
+* Image burner [Etcher](https://etcher.io/) tool
 * [Raspberry Pi 1 Model B+ v1.2](https://www.raspberrypi.org/products/model-b-plus/)
 
 ## References

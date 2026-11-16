@@ -1,4 +1,14 @@
 <aside class="sidebar" aria-label="Blog navigation">
+  {% if page.url == '/' %}
+  {% assign archive_pick = site.posts | where: 'url', site.archive_pick | first %}
+  {% if archive_pick %}
+  <section class="sidebar-section" aria-labelledby="sidebar-pick">
+    <h2 class="label" id="sidebar-pick">From the archive</h2>
+    <a href="{{ archive_pick.url | relative_url }}">{{ archive_pick.title | escape }}</a>
+    <small><time datetime="{{ archive_pick.date | date: '%Y-%m-%d' }}">{{ archive_pick.date | date: '%Y' }}</time></small>
+  </section>
+  {% endif %}
+  {% endif %}
   <section class="sidebar-section" aria-labelledby="sidebar-archive">
     <h2 class="label" id="sidebar-archive">Archive</h2>
     {% assign years = '' | split: '' %}
@@ -20,6 +30,7 @@
     </ul>
   </section>
 
+  {% unless page.url == '/' %}
   <section class="sidebar-section" aria-labelledby="sidebar-recent">
     <h2 class="label" id="sidebar-recent">Recent notes</h2>
     <ul class="sidebar-list">
@@ -28,6 +39,7 @@
       {% endfor %}
     </ul>
   </section>
+  {% endunless %}
 
   <section class="sidebar-section" aria-labelledby="sidebar-topics">
     <h2 class="label" id="sidebar-topics">Topics</h2>

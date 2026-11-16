@@ -85,6 +85,57 @@ h1 { margin: 0 0 .25rem; font-size: clamp(1.75rem, 5vw, 2.25rem); line-height: 1
 .manual-section p:not(.label) { margin: 0; }
 .lede { color: var(--muted); }
 
+.home-intro {
+  max-width: 43rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+.home-command {
+  margin: 0 0 .35rem;
+  background: transparent;
+  color: var(--ink);
+  font: .875rem/1.5 var(--mono);
+  overflow-wrap: anywhere;
+}
+.home-hex { color: var(--link); }
+.home-intro h1 { font-family: var(--serif); font-size: clamp(2.25rem, 7vw, 3.25rem); }
+.home-intro .lede { margin: 0; }
+.home-note-title { margin: 0 0 .25rem; font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 1.2; }
+.home-summary { max-width: 43rem; margin: .55rem 0 0; }
+.home-index-link { margin: .65rem 0 0; font: .8125rem/1.5 var(--mono); }
+.home-projects { border-top: 1px solid var(--rule); margin-top: 1.5rem; padding-top: .8rem; }
+.project-showcase {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .9rem 1.25rem;
+  list-style: none;
+  padding: 0;
+}
+.project-showcase li { position: relative; padding-inline-start: 1.5rem; }
+.project-showcase .ph { position: absolute; inset-inline-start: 0; top: .24em; color: var(--muted); }
+.project-showcase p { margin: .2rem 0 0; color: var(--muted); }
+.footer { align-items: center; }
+.footer-badges { display: flex; gap: .35rem; }
+.footer-badge {
+  width: 88px;
+  height: 31px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  border: 1px solid var(--rule);
+  background: var(--header);
+  color: var(--link);
+  font: bold .6875rem/1 var(--mono);
+}
+.footer-badge span { display: grid; place-items: center; padding-inline: .25rem; }
+.footer-badge span:first-child { background: #414e88; color: #fff; }
+.footer-feed span:first-child { background: #a64a17; }
+
+.about-projects { list-style: none; padding: 0; }
+.about-projects li { position: relative; padding-inline-start: 1.5rem; }
+.about-projects li + li { margin-top: .35rem; }
+.about-projects .ph { position: absolute; inset-inline-start: 0; top: .24em; color: var(--muted); }
+
 .notes, .links { list-style: none; padding: 0; margin: 0; }
 .notes li { display: grid; grid-template-columns: 7rem 1fr; align-items: baseline; gap: .35rem; }
 .notes li + li { margin-top: .35rem; }
@@ -133,6 +184,8 @@ main:target { background: transparent; }
 .prose code { font: .85em var(--mono); }
 
 @media (max-width: 38rem) {
+  .synopsis { column-gap: .4rem; }
+  .synopsis a { display: inline-block; padding: .65rem .12rem; }
   .site-layout { display: block; }
   .sidebar { border-inline-start: 0; border-top: 1px solid var(--rule); margin-top: 2rem; padding: 1rem 0 0; }
   .sidebar-section + .sidebar-section { margin-top: 1rem; }
@@ -141,4 +194,5 @@ main:target { background: transparent; }
 
 @media (max-width: 28rem) {
   .notes li { grid-template-columns: 1fr; }
+  .project-showcase { grid-template-columns: 1fr; }
 }

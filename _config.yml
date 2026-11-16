@@ -4,6 +4,12 @@ url: https://rixrix.github.io
 timezone: Pacific/Auckland
 permalink: /notes/:year/:month/:day/:title/
 markdown: kramdown
+archive_pick: /notes/2008/02/26/m0n0dev-patch/
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - scripts
+  - vendor
 defaults:
   - scope:
       path: ""

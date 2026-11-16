@@ -1,20 +1,28 @@
 ---
 layout: default
-title: Latest note
-manual_page: Latest(7)
+title: Hello
+manual_page: Hello(7)
+phosphor_icons: true
 ---
+<header class="home-intro">
+  <p class="home-command"><span aria-hidden="true">&gt;_</span> (|| decode(<span class="home-hex">0x48656C6C6F</span>))()</p>
+  <h1>Hello</h1>
+  <p class="lede">I’m Richard Sentino. I write about side projects, AI, and spec-driven development. Lately, I’ve been using Rust for some of those projects and sharing what I learn along the way.</p>
+</header>
+
 {% assign published = site.posts | where_exp: 'post', 'post.draft != true' %}
 {% assign latest = published.first %}
 {% if latest %}
 <article>
   <header class="note-header">
     <p class="label">Latest note</p>
-    <h1><a href="{{ latest.url | relative_url }}">{{ latest.title | escape }}</a></h1>
+    <h2 class="home-note-title"><a href="{{ latest.url | relative_url }}">{{ latest.title | escape }}</a></h2>
     <time datetime="{{ latest.date | date: '%Y-%m-%d' }}">{{ latest.date | date: '%Y-%m-%d' }}</time>
   </header>
-  <div class="prose">
-    {{ latest.content }}
-  </div>
+  {% assign summary = latest.description | default: latest.excerpt | strip_html | normalize_whitespace | truncatewords: 44 %}
+  {% if summary != '' %}<p class="home-summary">{{ summary | escape }}</p>{% endif %}
+  <p class="home-index-link">[<a href="{{ latest.url | relative_url }}">read note</a>]</p>
+</article>
   {% if published.size > 1 %}
   <section class="more-notes" aria-labelledby="more-notes">
     <h2 class="label" id="more-notes">More notes</h2>
@@ -25,12 +33,25 @@ manual_page: Latest(7)
       <p>{{ post.description | default: post.excerpt | strip_html | normalize_whitespace | truncatewords: 28 | escape }}</p>
     </div>
     {% endfor %}
+    <p class="home-index-link">[<a href="{{ '/notes/' | relative_url }}">all notes</a>]</p>
   </section>
   {% endif %}
-  {% include see-also.html current_note=latest %}
-</article>
 {% else %}
-<h1>Software Notes</h1>
 <p>No notes published yet.</p>
 <p><a href="{{ '/notes/' | relative_url }}">Browse notes</a></p>
 {% endif %}
+
+<section class="home-projects" aria-labelledby="featured-projects">
+  <h2 class="label" id="featured-projects">Selected projects</h2>
+  <ul class="project-showcase" role="list">
+    {% assign featured = site.data.projects | where_exp: 'project', 'project.icon != nil' %}
+    {% for project in featured %}
+    <li>
+      <i class="ph ph-{{ project.icon | escape }}" aria-hidden="true"></i>
+      <a href="{{ '/projects/' | relative_url }}#{{ project.name | slugify }}">{{ project.name | escape }}</a>
+      <p>{{ project.description | escape }}</p>
+      {% if project.demo_url %}<a class="home-index-link" href="{{ project.demo_url | escape }}">Try in browser</a>{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</section>

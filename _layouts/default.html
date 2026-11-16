@@ -5,7 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
   <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+  {% if page.phosphor_icons %}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+  {% endif %}
   <link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | relative_url }}">
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "zef4pdtxlj");
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -15,7 +26,7 @@
   {% endif %}
   <header class="masthead">
     <span>{{ manual_page | escape }}</span>
-    <span>Software Notes</span>
+    <span>{{ site.title | escape }}</span>
     <span aria-hidden="true">{{ manual_page | escape }}</span>
   </header>
   <nav class="synopsis links" aria-label="Site navigation">
@@ -37,6 +48,10 @@
       <a href="https://github.com/rixrix">GitHub</a>
       <span aria-hidden="true"> · </span>
       <a href="https://www.linkedin.com/in/sentino/">LinkedIn</a>
+    </nav>
+    <nav class="footer-badges" aria-label="Blog links">
+      <a class="footer-badge footer-feed" href="{{ '/feed.xml' | relative_url }}"><span>RSS</span><span>Feed</span></a>
+      <a class="footer-badge" href="https://github.com/rixrix/rixrix.github.io"><span aria-hidden="true">&lt;/&gt;</span><span>Source</span></a>
     </nav>
   </footer>
 </body>
