@@ -9,9 +9,9 @@ phosphor_icons: true
 
 # Richard Sentino
 
-I’m a software engineer and lifelong tinkerer based in Auckland, New Zealand. I’ve spent more than 20 years working across startups, full-stack software, cloud platforms, and products that talk to hardware.
+I’m a software engineer and lifelong tinkerer based in Auckland, New Zealand. I’ve spent more than 20 years building across startups, full-stack software, cloud platforms, and products that talk to hardware.
 
-This is where I keep things I’ve tried and findings worth remembering. A strange bug, a side project, or something I learned from the person next to me all belong here. Lately, I’ve been writing about AI-assisted coding and spec-driven development, and getting back into Rust by using it in some of my side projects. My first Rust experiment was in 2015, when I tried getting it to talk to Node.js.
+This site is where I keep the things worth remembering: a strange bug, a side project, an open-source contribution, or something I learned from the person next to me. Lately I’ve been writing about AI-assisted coding, spec-driven development, and getting back into Rust through side projects. My first Rust experiment was in 2015, when I tried getting it to talk to Node.js.
 
 ## What I’m building
 
@@ -23,12 +23,16 @@ This is where I keep things I’ve tried and findings worth remembering. A stran
 - <i class="ph ph-code" aria-hidden="true"></i> **Traf** is a programming language I created with driving-themed commands like `StartEngine` and `Drive`. It compiles to JavaScript and runs in a browser-based editor. [Try Traf]({{ traf.demo_url }}) · [Source]({{ traf.url }})
 {: .about-projects role="list" }
 
-## Open-source contributions
+## Open source, over time
 
+Small contributions count. These are a few that survived the years:
+
+- **m0n0dev / m0n0wall** · Submitted a patch to m0n0dev, a tool for building m0n0wall-based distributions. It was committed to the main trunk in 2008. [Original post]({{ '/notes/2008/02/26/m0n0dev-patch/' | relative_url }}) · [Archived repository](https://github.com/rixrix/m0n0dev)
+- **Angular 2** · Made a small contribution during the pre-release period. `rixrix` appears among the top contributors to 2.0.0-alpha.37, and Richard Sentino is named in the final release acknowledgement. [The story and screenshots]({{ '/notes/2026/11/21/a-small-footnote-in-angular-2/' | relative_url }})
 - **TypeScript** · Added Web Audio’s `AudioContext.state` to the DOM typings. [Merged pull request](https://github.com/microsoft/TypeScript-DOM-lib-generator/pull/30)
 - **Sodium TypeScript** · Worked on npm packaging and continuous integration. [Merged pull request](https://github.com/SodiumFRP/sodium-typescript/pull/27)
 - **Firefox OS** · Submitted patches to Apache Cordova’s port for Mozilla’s Firefox OS, covering `deviceready` event handling and an error-message typo. [Event handling PR](https://github.com/apache/cordova-firefoxos/pull/1) · [Error message PR](https://github.com/apache/cordova-firefoxos/pull/5)
-- **npm and Angular** · Filed a CLI documentation issue for npm and joined Angular discussions about routing and typings. [npm issue](https://github.com/npm/npm/issues/12223) · [Angular activity](https://github.com/search?q=is%3Apublic+involves%3Arixrix+org%3Aangular&type=issues)
+- **npm** · Filed a CLI documentation issue. [Issue](https://github.com/npm/npm/issues/12223)
 
 ## See also
 
